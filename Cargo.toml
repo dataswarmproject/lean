@@ -76,6 +76,7 @@ hex = "0.4"
 bs58 = "0.5"
 bytes = "1.5"
 clap = "4.4"
+lazy_static = "1.4"
 
 # Testing
 proptest = "1.4"

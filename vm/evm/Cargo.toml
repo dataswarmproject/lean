@@ -6,5 +6,17 @@ authors.workspace = true
 license.workspace = true
 
 [dependencies]
+lean-crypto = { path = "../../core/crypto" }
+lean-state = { path = "../../core/state" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+bytes = { workspace = true }
+hex = { workspace = true }
+
+# EVM-specific dependencies
+primitive-types = "0.12"
+ethereum-types = "0.14"
+lazy_static = { workspace = true }
 
 [dev-dependencies]
