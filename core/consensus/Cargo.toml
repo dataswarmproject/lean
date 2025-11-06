@@ -6,5 +6,16 @@ authors.workspace = true
 license.workspace = true
 
 [dependencies]
+lean-crypto = { path = "../crypto" }
+lean-blockchain = { path = "../blockchain" }
+lean-transaction = { path = "../transaction" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+bincode = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
 
 [dev-dependencies]

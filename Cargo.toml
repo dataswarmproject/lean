@@ -75,6 +75,7 @@ chrono = { version = "0.4", features = ["serde"] }
 hex = "0.4"
 bs58 = "0.5"
 bytes = "1.5"
+clap = "4.4"
 
 # Testing
 proptest = "1.4"
