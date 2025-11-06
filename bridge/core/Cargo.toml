@@ -1,5 +1,5 @@
 [package]
-name = "lean-lending"
+name = "lean-bridge"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "lean-lending"
+name = "lean-nft"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,4 +10,4 @@ repository.workspace = true
 lean-crypto = { path = "../../core/crypto" }
 thiserror.workspace = true
 serde.workspace = true
-chrono.workspace = true
+serde_json.workspace = true
