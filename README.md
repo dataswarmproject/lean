@@ -1,6 +1,8 @@
-# LEAN CHAIN 🚀
-
 <div align="center">
+
+![LEAN CHAIN Hero](assets/lean_hero.png)
+
+# LEAN CHAIN <img src="assets/lean_icon.png" alt="LEAN Icon" width="32" height="32">
 
 **Lightning-fast. Enterprise-ready. Adaptive Network.**
 
