@@ -1,0 +1,242 @@
+//! EVM opcodes
+
+use std::fmt;
+
+/// EVM opcode
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct OpCode(pub u8);
+
+impl OpCode {
+    /// Get opcode name
+    pub fn name(&self) -> &'static str {
+        OPCODES.get(&self.0).map(|i| i.name).unwrap_or("INVALID")
+    }
+    
+    /// Get gas cost
+    pub fn gas_cost(&self) -> u64 {
+        OPCODES.get(&self.0).map(|i| i.gas).unwrap_or(0)
+    }
+    
+    /// Check if opcode is valid
+    pub fn is_valid(&self) -> bool {
+        OPCODES.contains_key(&self.0)
+    }
+}
+
+impl fmt::Display for OpCode {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{} ({:#x})", self.name(), self.0)
+    }
+}
+
+/// Opcode information
+#[derive(Debug, Clone, Copy)]
+pub struct OpCodeInfo {
+    pub code: u8,
+    pub name: &'static str,
+    pub gas: u64,
+}
+
+/// Create opcode map
+macro_rules! opcodes {
+    ($($code:expr => $name:expr, $gas:expr);* $(;)?) => {{
+        let mut map = std::collections::HashMap::new();
+        $(
+            map.insert($code, OpCodeInfo {
+                code: $code,
+                name: $name,
+                gas: $gas,
+            });
+        )*
+        map
+    }};
+}
+
+lazy_static::lazy_static! {
+    /// All EVM opcodes with gas costs
+    pub static ref OPCODES: std::collections::HashMap<u8, OpCodeInfo> = opcodes! {
+        // Arithmetic operations
+        0x00 => "STOP", 0;
+        0x01 => "ADD", 3;
+        0x02 => "MUL", 5;
+        0x03 => "SUB", 3;
+        0x04 => "DIV", 5;
+        0x05 => "SDIV", 5;
+        0x06 => "MOD", 5;
+        0x07 => "SMOD", 5;
+        0x08 => "ADDMOD", 8;
+        0x09 => "MULMOD", 8;
+        0x0a => "EXP", 10;
+        0x0b => "SIGNEXTEND", 5;
+        
+        // Comparison operations
+        0x10 => "LT", 3;
+        0x11 => "GT", 3;
+        0x12 => "SLT", 3;
+        0x13 => "SGT", 3;
+        0x14 => "EQ", 3;
+        0x15 => "ISZERO", 3;
+        0x16 => "AND", 3;
+        0x17 => "OR", 3;
+        0x18 => "XOR", 3;
+        0x19 => "NOT", 3;
+        0x1a => "BYTE", 3;
+        0x1b => "SHL", 3;
+        0x1c => "SHR", 3;
+        0x1d => "SAR", 3;
+        
+        // Crypto operations
+        0x20 => "SHA3", 30;
+        
+        // Environmental information
+        0x30 => "ADDRESS", 2;
+        0x31 => "BALANCE", 100;
+        0x32 => "ORIGIN", 2;
+        0x33 => "CALLER", 2;
+        0x34 => "CALLVALUE", 2;
+        0x35 => "CALLDATALOAD", 3;
+        0x36 => "CALLDATASIZE", 2;
+        0x37 => "CALLDATACOPY", 3;
+        0x38 => "CODESIZE", 2;
+        0x39 => "CODECOPY", 3;
+        0x3a => "GASPRICE", 2;
+        0x3b => "EXTCODESIZE", 100;
+        0x3c => "EXTCODECOPY", 100;
+        0x3d => "RETURNDATASIZE", 2;
+        0x3e => "RETURNDATACOPY", 3;
+        0x3f => "EXTCODEHASH", 100;
+        
+        // Block information
+        0x40 => "BLOCKHASH", 20;
+        0x41 => "COINBASE", 2;
+        0x42 => "TIMESTAMP", 2;
+        0x43 => "NUMBER", 2;
+        0x44 => "DIFFICULTY", 2;
+        0x45 => "GASLIMIT", 2;
+        0x46 => "CHAINID", 2;
+        0x47 => "SELFBALANCE", 5;
+        0x48 => "BASEFEE", 2;
+        
+        // Stack, Memory, Storage operations
+        0x50 => "POP", 2;
+        0x51 => "MLOAD", 3;
+        0x52 => "MSTORE", 3;
+        0x53 => "MSTORE8", 3;
+        0x54 => "SLOAD", 100;
+        0x55 => "SSTORE", 100;
+        0x56 => "JUMP", 8;
+        0x57 => "JUMPI", 10;
+        0x58 => "PC", 2;
+        0x59 => "MSIZE", 2;
+        0x5a => "GAS", 2;
+        0x5b => "JUMPDEST", 1;
+        
+        // Push operations
+        0x60 => "PUSH1", 3;
+        0x61 => "PUSH2", 3;
+        0x62 => "PUSH3", 3;
+        0x63 => "PUSH4", 3;
+        0x64 => "PUSH5", 3;
+        0x65 => "PUSH6", 3;
+        0x66 => "PUSH7", 3;
+        0x67 => "PUSH8", 3;
+        0x68 => "PUSH9", 3;
+        0x69 => "PUSH10", 3;
+        0x6a => "PUSH11", 3;
+        0x6b => "PUSH12", 3;
+        0x6c => "PUSH13", 3;
+        0x6d => "PUSH14", 3;
+        0x6e => "PUSH15", 3;
+        0x6f => "PUSH16", 3;
+        0x70 => "PUSH17", 3;
+        0x71 => "PUSH18", 3;
+        0x72 => "PUSH19", 3;
+        0x73 => "PUSH20", 3;
+        0x74 => "PUSH21", 3;
+        0x75 => "PUSH22", 3;
+        0x76 => "PUSH23", 3;
+        0x77 => "PUSH24", 3;
+        0x78 => "PUSH25", 3;
+        0x79 => "PUSH26", 3;
+        0x7a => "PUSH27", 3;
+        0x7b => "PUSH28", 3;
+        0x7c => "PUSH29", 3;
+        0x7d => "PUSH30", 3;
+        0x7e => "PUSH31", 3;
+        0x7f => "PUSH32", 3;
+        
+        // Dup operations
+        0x80 => "DUP1", 3;
+        0x81 => "DUP2", 3;
+        0x82 => "DUP3", 3;
+        0x83 => "DUP4", 3;
+        0x84 => "DUP5", 3;
+        0x85 => "DUP6", 3;
+        0x86 => "DUP7", 3;
+        0x87 => "DUP8", 3;
+        0x88 => "DUP9", 3;
+        0x89 => "DUP10", 3;
+        0x8a => "DUP11", 3;
+        0x8b => "DUP12", 3;
+        0x8c => "DUP13", 3;
+        0x8d => "DUP14", 3;
+        0x8e => "DUP15", 3;
+        0x8f => "DUP16", 3;
+        
+        // Swap operations
+        0x90 => "SWAP1", 3;
+        0x91 => "SWAP2", 3;
+        0x92 => "SWAP3", 3;
+        0x93 => "SWAP4", 3;
+        0x94 => "SWAP5", 3;
+        0x95 => "SWAP6", 3;
+        0x96 => "SWAP7", 3;
+        0x97 => "SWAP8", 3;
+        0x98 => "SWAP9", 3;
+        0x99 => "SWAP10", 3;
+        0x9a => "SWAP11", 3;
+        0x9b => "SWAP12", 3;
+        0x9c => "SWAP13", 3;
+        0x9d => "SWAP14", 3;
+        0x9e => "SWAP15", 3;
+        0x9f => "SWAP16", 3;
+        
+        // Log operations
+        0xa0 => "LOG0", 375;
+        0xa1 => "LOG1", 750;
+        0xa2 => "LOG2", 1125;
+        0xa3 => "LOG3", 1500;
+        0xa4 => "LOG4", 1875;
+        
+        // System operations
+        0xf0 => "CREATE", 32000;
+        0xf1 => "CALL", 100;
+        0xf2 => "CALLCODE", 100;
+        0xf3 => "RETURN", 0;
+        0xf4 => "DELEGATECALL", 100;
+        0xf5 => "CREATE2", 32000;
+        0xfa => "STATICCALL", 100;
+        0xfd => "REVERT", 0;
+        0xfe => "INVALID", 0;
+        0xff => "SELFDESTRUCT", 5000;
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_opcode_info() {
+        let add = OpCode(0x01);
+        assert_eq!(add.name(), "ADD");
+        assert_eq!(add.gas_cost(), 3);
+        assert!(add.is_valid());
+    }
+    
+    #[test]
+    fn test_invalid_opcode() {
+        let invalid = OpCode(0xff);
+        assert_eq!(invalid.name(), "SELFDESTRUCT");
+    }
+}
