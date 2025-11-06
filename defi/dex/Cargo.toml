@@ -6,5 +6,10 @@ authors.workspace = true
 license.workspace = true
 
 [dependencies]
+lean-crypto = { path = "../../core/crypto" }
+lean-state = { path = "../../core/state" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
 
 [dev-dependencies]
