@@ -1,0 +1,97 @@
+{
+  "network": {
+    "chain_id": "lean-mainnet-1",
+    "network_name": "LEAN CHAIN",
+    "genesis_time": "2025-01-01T00:00:00Z",
+    "protocol_version": "1.0.0"
+  },
+  "consensus": {
+    "algorithm": "BFT-PoS",
+    "block_time": 2000,
+    "finality_threshold": 6667,
+    "max_validators": 100,
+    "min_validator_stake": "10000000000000000000000",
+    "slash_percentage": 500,
+    "unbonding_period": 1209600
+  },
+  "genesis_accounts": [
+    {
+      "address": "0x0000000000000000000000000000000000000001",
+      "balance": "1000000000000000000000000000",
+      "description": "Treasury"
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000002",
+      "balance": "500000000000000000000000000",
+      "description": "Development Fund"
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000003",
+      "balance": "300000000000000000000000000",
+      "description": "Community Rewards"
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000004",
+      "balance": "200000000000000000000000000",
+      "description": "Ecosystem Growth"
+    }
+  ],
+  "genesis_validators": [
+    {
+      "address": "0x1000000000000000000000000000000000000001",
+      "pubkey": "0x02000000000000000000000000000000000000000000000000000000000000000001",
+      "stake": "50000000000000000000000",
+      "commission": 1000,
+      "description": "Genesis Validator 1"
+    },
+    {
+      "address": "0x1000000000000000000000000000000000000002",
+      "pubkey": "0x02000000000000000000000000000000000000000000000000000000000000000002",
+      "stake": "50000000000000000000000",
+      "commission": 1000,
+      "description": "Genesis Validator 2"
+    },
+    {
+      "address": "0x1000000000000000000000000000000000000003",
+      "pubkey": "0x02000000000000000000000000000000000000000000000000000000000000000003",
+      "stake": "50000000000000000000000",
+      "commission": 1000,
+      "description": "Genesis Validator 3"
+    }
+  ],
+  "parameters": {
+    "gas_price_minimum": "1000000000",
+    "block_gas_limit": "30000000",
+    "max_transaction_size": 131072,
+    "min_transaction_fee": "100000000000000"
+  },
+  "defi": {
+    "lending": {
+      "min_collateral_ratio": 15000,
+      "liquidation_threshold": 12500,
+      "liquidation_bonus": 500,
+      "reserve_factor": 1000
+    },
+    "stablecoin": {
+      "min_collateral_ratio": 15000,
+      "liquidation_ratio": 13000,
+      "stability_fee": 200,
+      "debt_ceiling": "1000000000000000000000000000"
+    },
+    "dex": {
+      "fee_bps": 30,
+      "protocol_fee_share": 1667
+    }
+  },
+  "oracle": {
+    "max_price_age": 300,
+    "min_oracle_responses": 3,
+    "max_price_deviation": 1000
+  },
+  "bridge": {
+    "multisig_threshold_numerator": 2,
+    "multisig_threshold_denominator": 3,
+    "min_transfer_amount": "1000000000000000000",
+    "max_transfer_amount": "1000000000000000000000000"
+  }
+}
