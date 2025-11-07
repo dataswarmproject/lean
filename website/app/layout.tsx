@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   title: 'LEAN Chain - Lightning-fast Enterprise Blockchain',
   description: 'Lightning-fast, enterprise-ready, adaptive blockchain network. Ultra-fast transactions, low costs, and full DeFi capabilities.',
   keywords: 'blockchain, cryptocurrency, DeFi, smart contracts, LEAN Chain',
-  authors: [{ name: 'LEAN Chain' }],
-  creator: 'LEAN Chain',
-  publisher: 'LEAN Chain',
+  authors: [{ name: 'Digital Trendz', url: 'mailto:dataswarmproject@gmail.com' }],
+  creator: 'Digital Trendz',
+  publisher: 'Digital Trendz',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

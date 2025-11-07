@@ -277,6 +277,7 @@ export default function Home() {
           </div>
           <div className="border-t border-border/50 pt-8 text-xs text-muted-foreground">
             <p>&copy; 2025 LEAN Chain. All rights reserved. MIT / Apache-2.0 License.</p>
+            <p className="mt-2">Developed by <a href="mailto:dataswarmproject@gmail.com" className="hover:text-foreground transition-colors">Digital Trendz</a></p>
           </div>
         </div>
       </footer>

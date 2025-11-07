@@ -223,6 +223,11 @@ colors: {
 
 Update page components in `app/` directory to modify content.
 
+## Contact
+
+- **Developer**: Digital Trendz
+- **Email**: dataswarmproject@gmail.com
+
 ## Contributing
 
 1. Fork the repository
