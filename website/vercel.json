@@ -1,0 +1,29 @@
+{
+  "rewrites": [
+    {
+      "source": "/docs/:path*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/forum/:path*",
+      "destination": "/forum"
+    },
+    {
+      "source": "/validators/:path*",
+      "destination": "/validators"
+    },
+    {
+      "source": "/explorer/:path*",
+      "destination": "/explorer"
+    },
+    {
+      "source": "/staking/:path*",
+      "destination": "/staking"
+    },
+    {
+      "source": "/status/:path*",
+      "destination": "/status"
+    }
+  ]
+}
+
