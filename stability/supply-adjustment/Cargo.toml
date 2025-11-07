@@ -1,0 +1,15 @@
+[package]
+name = "lean-supply-adjustment"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+lean-crypto = { path = "../../core/crypto" }
+lean-price-index = { path = "../price-index" }
+lean-balancing-index = { path = "../balancing-index" }
+thiserror.workspace = true
+serde.workspace = true
+chrono.workspace = true
